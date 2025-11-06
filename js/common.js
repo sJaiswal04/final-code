@@ -1,9 +1,9 @@
-// ======== Common Helper Functions ========
+
 
 const qs = s => document.querySelector(s);
 const qsa = s => document.querySelectorAll(s);
 
-// ======== Default Data (no longer used but kept for reference) ========
+
 const defaultData = [
   { id: 1, title: 'Large pothole on Main Street', category: 'Pothole', location: 'Main Street, Mumbai', desc: 'A deep pothole causing traffic delays.', photo: '', lat: 19.0760, lon: 72.8777, votes: 12, status: 'open', reporter: 'rajesh', comments: [], assignedAt: null },
   { id: 2, title: 'Overflowing trash bin', category: 'Garbage', location: 'Park Avenue, Delhi', desc: 'Trash not collected for over a week.', photo: '', lat: 28.7041, lon: 77.1025, votes: 8, status: 'inprogress', reporter: 'priya', comments: [{ user: 'admin', text: 'Team dispatched.', timestamp: '2025-10-26T14:30:00Z' }], assignedAt: '2025-10-26T14:00:00Z' },
@@ -12,12 +12,12 @@ const defaultData = [
   { id: 5, title: 'Broken bench in park', category: 'Garbage', location: 'Lodhi Garden, Delhi', desc: 'Bench is damaged and unsafe to use.', photo: '', lat: 28.5880, lon: 77.2197, votes: 3, status: 'inprogress', reporter: 'vikram', comments: [], assignedAt: '2025-10-27T09:00:00Z' }
 ];
 
-// ======== Data Handling ========
+
 
 function loadData() {
   try {
     const raw = localStorage.getItem('uc_issues');
-    // Only load what the user has reported; empty array if none
+   
     return raw ? JSON.parse(raw) : [];
   } catch (e) {
     console.warn('Failed to load issues:', e);
@@ -33,7 +33,7 @@ function saveData(data) {
   }
 }
 
-// ======== Global Variables ========
+
 let issues = loadData();
 let upvotes = JSON.parse(localStorage.getItem('uc_upvotes') || '{}');
 let role = localStorage.getItem('uc_role') || 'user';
@@ -45,7 +45,7 @@ let profilePic =
 let geoCache = JSON.parse(localStorage.getItem('uc_geo_cache') || '{}');
 let lastDeletedIssue = null;
 
-// ======== UI Helpers ========
+
 
 function showToast(message, type = 'success') {
   const toast = document.createElement('div');
@@ -97,7 +97,7 @@ function debounce(fn, delay) {
   };
 }
 
-// ======== Geocoding Helper ========
+
 
 async function reverseGeocode(lat, lon) {
   const cacheKey = `${lat},${lon}`;
@@ -123,8 +123,7 @@ async function reverseGeocode(lat, lon) {
   }
 }
 
-// ======== Sync Between Pages ========
-// This listens for localStorage updates (e.g. new reports)
+
 window.addEventListener('storage', event => {
   if (event.key === 'uc_issues') {
     try {

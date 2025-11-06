@@ -55,7 +55,7 @@
     </div>
   </main>
 
-  <footer>Built for your college project • Local storage backs demo data</footer>
+
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
@@ -88,7 +88,7 @@
         role = e.target.value;
         localStorage.setItem('uc_role', role);
         updateProfileLink();
-        window.location.href = 'admin-user.html'; // Redirect to admin-user page on role change
+        window.location.href = 'admin-user.html'; 
       });
       qs('#theme-toggle').addEventListener('click', () => {
         document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';

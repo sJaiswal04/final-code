@@ -67,14 +67,14 @@
     </div>
   </main>
 
-  <footer>Built for your college project • Local storage backs demo data</footer>
+
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <script src="js/common.js"></script>
   <script>
-    // Load header
+   
     fetch('includes/header.html')
       .then(response => response.text())
       .then(data => {
@@ -216,7 +216,7 @@
       if (canvas) {
   if (statsChart) statsChart.destroy();
 
-  const isDark = document.body.dataset.theme === 'dark'; // ✅ Detect theme
+  const isDark = document.body.dataset.theme === 'dark'; 
 
   statsChart = new Chart(canvas, {
     type: 'pie',
@@ -225,14 +225,14 @@
       datasets: [{
         data: data,
         backgroundColor: [
-          '#e74c3c', // red
-          '#3498db', // blue
-          '#2ecc71', // green
-          '#f1c40f', // yellow
-          '#9b59b6', // purple
-          '#e67e22', // orange
-          '#1abc9c', // teal
-          '#34495e'  // dark gray
+          '#e74c3c', 
+          '#3498db', 
+          '#2ecc71', 
+          '#f1c40f', 
+          '#9b59b6', 
+          '#e67e22', 
+          '#1abc9c', 
+          '#34495e'  
         ],
         borderColor: '#ffffff',
         borderWidth: 2
@@ -245,13 +245,13 @@
           position: 'bottom',
           labels: {
             font: { size: 14 },
-            color: 'white' // ✅ Dynamic legend color
+            color: 'white' 
           }
         },
         title: {
           display: true,
           text: 'Issue Distribution',
-          color: 'white'// ✅ Dynamic title color
+          color: 'white'
         }
       }
     }
@@ -272,7 +272,7 @@
     renderRecent();
     renderStats();
 
-    // 🔄 Auto-refresh chart and recent issues when data changes
+    
     document.addEventListener('issuesUpdated', () => {
       issues = JSON.parse(localStorage.getItem('uc_issues') || '[]');
       renderRecent();
