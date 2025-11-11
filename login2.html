@@ -178,6 +178,38 @@
     </div>
   </div>
 </div>
+<script>
+  // Decode JWT in frontend
+  function parseJwt(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function handleCredentialResponse(response) {
+    // Print the raw Google ID token
+    console.log("Google ID Token:", response.credential);
+
+    // Decode token and print user info
+    const userData = parseJwt(response.credential);
+    if (userData) {
+      console.log("Decoded User Info:", userData);
+    } else {
+      console.log("Failed to decode token.");
+    }
+
+    // Optional: redirect to index.html after 1 second
+    setTimeout(() => { window.location.href = "index.html"; }, 1000);
+  }
+</script>
+
 
 <script>
   const canvas = document.getElementById("bubble-canvas");
